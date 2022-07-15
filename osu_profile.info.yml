@@ -1,0 +1,9 @@
+name: "OSU Profile"
+description: "Adds OSU profile content type"
+package: Custom
+type: module
+version: 1.0.0
+core_version_requirement: ^9 || ^10
+dependencies:
+ - auto_entitylabel
+ - osu_default_content
