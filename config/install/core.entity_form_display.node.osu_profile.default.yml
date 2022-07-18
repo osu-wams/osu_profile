@@ -58,8 +58,6 @@ third_party_settings:
         open: true
         description: ''
         required_fields: true
-_core:
-  default_config_hash: ko6NG5ceWNDxRfgQV0QFjqmEAu74kO9VGiM8K4VkqxQ
 id: node.osu_profile.default
 targetEntityType: node
 bundle: osu_profile
