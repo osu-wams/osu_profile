@@ -30,7 +30,6 @@ settings:
   title_field_required: false
   default_image:
     uuid: 20541468-d5eb-4f04-b8e4-0686eb124a12
-    #path: /var/www/html/docroot/sites/default/files/default_images/profile_preview.png
     alt: 'Profile image placeholder'
     title: ''
     width: 580
