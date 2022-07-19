@@ -1,6 +1,6 @@
 name: "OSU Profile"
 description: "Adds OSU profile content type"
-package: Custom
+package: OSU
 type: module
 version: 1.0.0
 core_version_requirement: ^9 || ^10
