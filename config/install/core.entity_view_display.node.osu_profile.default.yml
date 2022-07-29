@@ -133,21 +133,21 @@ third_party_settings:
             blb_region_col_3: null
           breakpoints:
             desktop: blb_col_3_3_6
-            tablet: blb_col_4_4_4
-            mobile: blb_col_4_4_4
+            tablet: blb_col_12
+            mobile: blb_col_12
           layout_regions_classes:
             blb_region_col_1:
               - col-lg-3
-              - col-md-4
-              - col-4
+              - col-md-12
+              - col-12
             blb_region_col_2:
               - col-lg-3
-              - col-md-4
-              - col-4
+              - col-md-12
+              - col-12
             blb_region_col_3:
               - col-lg-6
-              - col-md-4
-              - col-4
+              - col-md-12
+              - col-12
           remove_gutters: '0'
         components:
           3a4fe79a-e52e-4fa2-99ee-3f5fec409e60:
@@ -494,12 +494,10 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
               formatter:
-                type: telephone_formatter
+                type: telephone_link
                 label: hidden
                 settings:
-                  format: 0
-                  link: false
-                  default_country: ''
+                  title: ''
                 third_party_settings: {  }
             weight: 1
             additional:
@@ -910,9 +908,9 @@ third_party_settings:
           regions_attributes:
             blb_region_col_1: null
           breakpoints:
-            desktop: ''
-            tablet: ''
-            mobile: ''
+            desktop: blb_col_12
+            tablet: blb_col_12
+            mobile: blb_col_12
           layout_regions_classes:
             blb_region_col_1:
               - col-lg-12

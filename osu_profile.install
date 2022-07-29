@@ -5,11 +5,15 @@
  */
 function osu_profile_install() {
   // Load default image by name to get uuid.
-  $default_image = reset(Drupal::entityTypeManager()->getStorage('file')->loadByProperties(['filename' => 'profile_preview.png']));
+  $default_image_array = \Drupal::entityTypeManager()
+    ->getStorage('file')
+    ->loadByProperties(['filename' => 'profile_preview.png']);
+  $default_image = reset($default_image_array);
   $default_uuid = $default_image->get('uuid')->value;
 
   // Load image field to set default image uuid.
-  $image_field = \Drupal::configFactory()->getEditable('field.field.node.osu_profile.field_profile_image');
+  $image_field = \Drupal::configFactory()
+    ->getEditable('field.field.node.osu_profile.field_profile_image');
   $settings = $image_field->get('settings');
   $settings['default_image']['uuid'] = $default_uuid;
   $image_field->set('settings', $settings);
