@@ -269,7 +269,7 @@ third_party_settings:
                   data: ''
                 block_content_attributes:
                   id: ''
-                  class: 'h2 fw-bolder osu-text-osuorange'
+                  class: 'h2 fw-bolder osu-text-osuorange text-break'
                   style: ''
                   data: ''
           4de2059f-11aa-4ca7-ac81-71305247eb9a:
@@ -377,6 +377,22 @@ third_party_settings:
                     class: null
                   min_height:
                     class: 0
+              component_attributes:
+                block_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
+                block_title_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
+                block_content_attributes:
+                  id: ''
+                  class: text-break
+                  style: ''
+                  data: ''
           72d57513-c22d-4c23-8dd7-2ffea85e5899:
             uuid: 72d57513-c22d-4c23-8dd7-2ffea85e5899
             region: blb_region_col_3
