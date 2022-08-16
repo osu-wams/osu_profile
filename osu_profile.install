@@ -19,3 +19,30 @@ function osu_profile_install() {
   $image_field->set('settings', $settings);
   $image_field->save();
 }
+
+/**
+ * Add text break to fix issues with long names and emails.
+ */
+function osu_profile_update_9001(&$sandbox) {
+  // Add text break to title and email on entity view display
+  $profile_layout = \Drupal::configFactory()->getEditable('core.entity_view_display.node.osu_profile.default');
+  $third_party_settings = $profile_layout->get('third_party_settings');
+  $components = $third_party_settings['layout_builder']['sections'][0]['components'];
+  foreach ($profile_layout->get('third_party_settings')['layout_builder']['sections'][0]['components'] as $key => &$component) {
+    if ($component['configuration']['id'] == 'field_block:node:osu_profile:title') {
+      $components[$key]['additional']['component_attributes']['block_content_attributes']['class'] = 'h2 fw-bolder osu-text-osuorange text-break';
+    } else if ($component['configuration']['id'] == 'field_block:node:osu_profile:field_profile_email') {
+      $components[$key]['additional']['component_attributes']['block_content_attributes']['class'] = 'text-break';
+    }
+  }
+  $third_party_settings['layout_builder']['sections'][0]['components'] = $components;
+  $profile_layout->set('third_party_settings', $third_party_settings);
+  $profile_layout->save();
+
+  // Update view display on profile view
+  $profile_view = \Drupal::configFactory()->getEditable('views.view.profile');
+  $view_display = $profile_view->get('display');
+  $view_display['default']['display_options']['fields']['nothing']['alter']['text'] = "<div class=\"p-3 osu-bg-page-alt-1 rounded-bottom\">\r\n  <h2 class=\"fw-bolder text-break\">\r\n    {{ title }}\r\n  </h2>\r\n  <p class=\"pb-4\">{{ field_profile_pronouns }}</p>\r\n  <p class=\"text-break\">{{ field_profile_email }}</p>\r\n  <p>{{ field_profile_office_phone }}</p>\r\n  <p>{{ field_profile_address }}</p>\r\n</div>";
+  $profile_view->set('display', $view_display);
+  $profile_view->save();
+}

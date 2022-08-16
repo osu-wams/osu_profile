@@ -426,7 +426,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"p-3 osu-bg-page-alt-1 rounded-bottom\">\r\n  <h2 class=\"fw-bolder\">\r\n    {{ title }}\r\n  </h2>\r\n  <p>\r\n    {{ field_profile_pronouns }}<br/><br/>\r\n    {{ field_profile_email }}\r\n    {{ field_profile_office_phone }}\r\n    {{ field_profile_address }}\r\n  </p>\r\n</div>"
+            text: "<div class=\"p-3 osu-bg-page-alt-1 rounded-bottom\">\r\n  <h2 class=\"fw-bolder text-break\">\r\n    {{ title }}\r\n  </h2>\r\n  <p class=\"pb-4\">{{ field_profile_pronouns }}</p>\r\n  <p class=\"text-break\">{{ field_profile_email }}</p>\r\n  <p>{{ field_profile_office_phone }}</p>\r\n  <p>{{ field_profile_address }}</p>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
