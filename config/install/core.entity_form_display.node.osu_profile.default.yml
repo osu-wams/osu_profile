@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.osu_profile.field_osu_organizations
     - field.field.node.osu_profile.field_profile_address
     - field.field.node.osu_profile.field_profile_biography
     - field.field.node.osu_profile.field_profile_email
@@ -69,6 +70,16 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_osu_organizations:
+    type: entity_reference_autocomplete
+    weight: 10
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_profile_address:
     type: address_default
     weight: 12
@@ -77,7 +88,7 @@ content:
     third_party_settings: {  }
   field_profile_biography:
     type: text_textarea
-    weight: 13
+    weight: 11
     region: content
     settings:
       rows: 5
