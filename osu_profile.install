@@ -1,5 +1,10 @@
 <?php
 
+use Drupal\Core\Config\FileStorage;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\pathauto\Entity\PathautoPattern;
+
 /**
  * Implements hook_install().
  */
@@ -21,18 +26,60 @@ function osu_profile_install() {
 }
 
 /**
+ * Add new field to profile.
+ */
+function osu_profile_update_9002(&$sandbox) {
+  $install_path = \Drupal::service('module_handler')
+    ->getModule('osu_profile')
+    ->getPath();
+  $config_path = realpath($install_path . '/config/install');
+  $source = new FileStorage($config_path);
+  /** @var \Drupal\Core\Config\CachedStorage $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+  // Add new pathauto pattern.
+  PathautoPattern::create($source->read('pathauto.pattern.osu_profile_node'))
+    ->save();
+  // Create the field storage.
+  FieldStorageConfig::create($source->read('field.storage.node.field_profile_primary_title'))
+    ->save();
+  // Create the field instance.
+  FieldConfig::create($source->read('field.field.node.osu_profile.field_profile_primary_title'))
+    ->save();
+  // Update for form display by pushing to the end.
+  $form_config = $config_storage->read('core.entity_form_display.node.osu_profile.default');
+  $form_config['third_party_settings']['field_group']['group_personal_information']['children'][] = 'field_profile_primary_title';
+  // Add the field settings
+  $form_config['content']['field_profile_primary_title'] = [
+    "type" => "string_textfield",
+    "weight" => 13,
+    "region" => "content",
+    "settings" => [
+      "size" => 60,
+      "placeholder" => "",
+    ],
+    "third_party_settings" => [],
+  ];
+  $config_storage->write('views.view.profile', $source->read('views.view.profile'));
+  return t('Field, Pathauto, View and Form configs updates, manual updates to node view are required.');
+}
+
+/**
  * Add text break to fix issues with long names and emails.
  */
 function osu_profile_update_9001(&$sandbox) {
   // Add text break to title and email on entity view display
-  $profile_layout = \Drupal::configFactory()->getEditable('core.entity_view_display.node.osu_profile.default');
+  $profile_layout = \Drupal::configFactory()
+    ->getEditable('core.entity_view_display.node.osu_profile.default');
   $third_party_settings = $profile_layout->get('third_party_settings');
   $components = $third_party_settings['layout_builder']['sections'][0]['components'];
   foreach ($profile_layout->get('third_party_settings')['layout_builder']['sections'][0]['components'] as $key => &$component) {
     if ($component['configuration']['id'] == 'field_block:node:osu_profile:title') {
       $components[$key]['additional']['component_attributes']['block_content_attributes']['class'] = 'h2 fw-bolder osu-text-osuorange text-break';
-    } else if ($component['configuration']['id'] == 'field_block:node:osu_profile:field_profile_email') {
-      $components[$key]['additional']['component_attributes']['block_content_attributes']['class'] = 'text-break';
+    }
+    else {
+      if ($component['configuration']['id'] == 'field_block:node:osu_profile:field_profile_email') {
+        $components[$key]['additional']['component_attributes']['block_content_attributes']['class'] = 'text-break';
+      }
     }
   }
   $third_party_settings['layout_builder']['sections'][0]['components'] = $components;
