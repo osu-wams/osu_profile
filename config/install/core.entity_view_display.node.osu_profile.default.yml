@@ -1,3 +1,4 @@
+uuid: ca40dff9-7075-4fdb-a6a4-f24f2f5ada27
 langcode: en
 status: true
 dependencies:
@@ -16,6 +17,7 @@ dependencies:
     - node.type.osu_profile
   module:
     - address
+    - bootstrap_layout_builder
     - image
     - layout_builder
     - layout_builder_restrictions
@@ -29,7 +31,6 @@ third_party_settings:
       - layout_id: 'bootstrap_layout_builder:blb_col_3'
         layout_settings:
           label: ''
-          context_mapping: { }
           container_wrapper_classes: ''
           container_wrapper_attributes: null
           container_wrapper:
@@ -49,8 +50,6 @@ third_party_settings:
                   background_attachment: not_fixed
                   background_size: cover
               text_color:
-                class: null
-              text_alignment:
                 class: null
               padding:
                 class: p-2
@@ -115,6 +114,8 @@ third_party_settings:
                   class: _none
               scroll_effects:
                 class: null
+              text_alignment:
+                class: null
               items_alignment:
                 class: null
               min_height:
@@ -150,6 +151,7 @@ third_party_settings:
               - col-md-12
               - col-12
           remove_gutters: '0'
+          context_mapping: { }
         components:
           3a4fe79a-e52e-4fa2-99ee-3f5fec409e60:
             uuid: 3a4fe79a-e52e-4fa2-99ee-3f5fec409e60
@@ -163,10 +165,15 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
               formatter:
-                type: string
+                type: text_field_formatter
                 label: hidden
                 settings:
-                  link_to_entity: false
+                  link_to_entity: 0
+                  wrap_tag: h1
+                  wrap_class: text-break
+                  wrap_attributes: ''
+                  override_link_label: ''
+                  token: ''
                 third_party_settings: { }
             weight: 0
             additional:
@@ -251,9 +258,11 @@ third_party_settings:
                       class: _none
                     rounded_corner_bottom_right:
                       class: _none
-                  scroll_effects:
+                  box_shadow:
                     class: null
                   items_alignment:
+                    class: null
+                  scroll_effects:
                     class: null
                   min_height:
                     class: 0
@@ -270,7 +279,7 @@ third_party_settings:
                   data: ''
                 block_content_attributes:
                   id: ''
-                  class: 'h2 fw-bolder osu-text-osuorange text-break'
+                  class: ''
                   style: ''
                   data: ''
           4de2059f-11aa-4ca7-ac81-71305247eb9a:
@@ -1038,7 +1047,6 @@ third_party_settings:
       - layout_id: 'bootstrap_layout_builder:blb_col_1'
         layout_settings:
           label: ''
-          context_mapping: { }
           container_wrapper_classes: ''
           container_wrapper_attributes: null
           container_wrapper:
@@ -1058,8 +1066,6 @@ third_party_settings:
                   background_attachment: not_fixed
                   background_size: cover
               text_color:
-                class: null
-              text_alignment:
                 class: null
               padding:
                 class: p-2
@@ -1124,6 +1130,8 @@ third_party_settings:
                   class: _none
               scroll_effects:
                 class: null
+              text_alignment:
+                class: null
               items_alignment:
                 class: null
               min_height:
@@ -1147,6 +1155,7 @@ third_party_settings:
               - col-md-12
               - col-12
           remove_gutters: '0'
+          context_mapping: { }
         components:
           04aeb3d9-0515-4c8d-969c-d3976089da9d:
             uuid: 04aeb3d9-0515-4c8d-969c-d3976089da9d
@@ -1276,7 +1285,7 @@ third_party_settings:
         - 'bootstrap_layout_builder:blb_col_5'
         - 'bootstrap_layout_builder:blb_col_6'
 _core:
-  default_config_hash: GuqHZRRfJYHsoKsO1OufLI5PwjUjRojuVec69hI0qto
+  default_config_hash: yHWy5xWM7LvnP4wbvZQLVwURjRSBfZP3d8CP4ZJRZQc
 id: node.osu_profile.default
 targetEntityType: node
 bundle: osu_profile
@@ -1382,4 +1391,5 @@ content:
     third_party_settings: { }
     weight: 100
     region: content
-hidden: { }
+hidden:
+  entitygroupfield: true
