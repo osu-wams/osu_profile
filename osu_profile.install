@@ -26,6 +26,23 @@ function osu_profile_install() {
 }
 
 /**
+ * Add Metatag defaults and update display of name to an H1.
+ */
+function osu_profile_update_9003(&$sandbox) {
+  $osu_profile_path = \Drupal::service('module_handler')
+    ->getModule('osu_profile')
+    ->getPath();
+  $config_path = realpath($osu_profile_path . '/config/install');
+  /** @var \Drupal\Core\Config\FileStorage $file_source */
+  $file_source = new FileStorage($config_path);
+  /** @var \Drupal\Core\Config\CachedStorage $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+  $profile_metatag = $file_source->read('metatag.metatag_defaults.node__osu_profile');
+  $config_storage->write('metatag.metatag_defaults.node__osu_profile', $profile_metatag);
+  return t('Add default metatag for profile content type.');
+}
+
+/**
  * Add new field to profile.
  */
 function osu_profile_update_9002(&$sandbox) {
