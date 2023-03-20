@@ -26,6 +26,21 @@ function osu_profile_install() {
 }
 
 /**
+ * Add teaser display to profile content type.
+ */
+function osu_profile_update_9004(&$sandbox) {
+  $osu_profile_path = \Drupal::service('module_handler')
+    ->getModule('osu_profile')
+    ->getPath();
+  $config_path = realpath($osu_profile_path . '/config/install');
+  /** @var \Drupal\Core\Config\FileStorage $file_source */
+  $file_source = new FileStorage($config_path);
+  /** @var \Drupal\Core\Config\CachedStorage $config_storage */
+  $config_storage = \Drupal::service('config.storage');
+  $config_storage->write('core.entity_view_display.node.osu_profile.teaser', $file_source->read('core.entity_view_display.node.osu_profile.teaser'));
+}
+
+/**
  * Add Metatag defaults and update display of name to an H1.
  */
 function osu_profile_update_9003(&$sandbox) {
