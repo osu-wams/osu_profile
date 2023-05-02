@@ -83,3 +83,5 @@ hidden:
   field_profile_office_phone: true
   field_profile_primary_title: true
   field_profile_pronouns: true
+  field_profile_credentials: true
+  field_profile_curriculum_vitae: true
