@@ -1393,3 +1393,5 @@ content:
     region: content
 hidden:
   entitygroupfield: true
+  field_profile_credentials: true
+  field_profile_curriculum_vitae: true
