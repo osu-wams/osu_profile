@@ -42,7 +42,15 @@ settings:
       override: hidden
     organization:
       override: hidden
+    addressLine1:
+      override: optional
+    postalCode:
+      override: optional
     dependentLocality:
       override: hidden
+    locality:
+      override: optional
+    administrativeArea:
+      override: optional
   fields: {  }
 field_type: address
