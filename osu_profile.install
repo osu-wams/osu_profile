@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Entity\EntityStorageException;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\pathauto\Entity\PathautoPattern;
@@ -23,6 +24,41 @@ function osu_profile_install() {
   $settings['default_image']['uuid'] = $default_uuid;
   $image_field->set('settings', $settings);
   $image_field->save();
+}
+
+/**
+ * Make address field fields optional.
+ *
+ */
+function osu_profile_update_9005(&$sandbox) {
+  /** @var Drupal\field\Entity\FieldConfig $profile_address_field */
+  $profile_address_field = FieldConfig::loadByName('node', 'osu_profile', 'field_profile_address');
+  /** @var array $field_overrides */
+  $field_overrides = $profile_address_field->getSetting('field_overrides');
+  $address_field_updates = [
+    "addressLine1" => [
+      "override" => "optional",
+    ],
+    "postalCode" => [
+      "override" => "optional",
+    ],
+    "locality" => [
+      "override" => "optional",
+    ],
+    "administrativeArea" => [
+      "override" => "optional",
+    ],
+  ];
+  $field_overrides = array_merge($address_field_updates, $field_overrides);
+  $profile_address_field->setSetting('field_overrides', $field_overrides);
+  try {
+    $profile_address_field->save();
+    return t('Profile Address field is now optional.');
+  }
+  catch (EntityStorageException $e) {
+    \Drupal::logger('osu_profile')->error($e->getMessage());
+    return t('Something went wrong');
+  }
 }
 
 /**
