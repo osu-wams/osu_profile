@@ -194,7 +194,7 @@ third_party_settings:
                       background_attachment: not_fixed
                       background_size: cover
                   text_color:
-                    class: osu-text-bucktoothwhite
+                    class: none
                   text_alignment:
                     class: null
                   padding:
