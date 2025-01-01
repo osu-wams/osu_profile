@@ -9,3 +9,4 @@ dependencies:
  - osu_default_content:osu_default_content
  - address:address
  - field_group:field_group
+ - focal_point:focal_point
