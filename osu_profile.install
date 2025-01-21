@@ -10,7 +10,7 @@ use Drupal\pathauto\Entity\PathautoPattern;
 /**
  * Implements hook_install().
  */
-function osu_profile_install() {
+function osu_profile_install(): void {
   // Load default image by name to get uuid.
   $default_image_array = \Drupal::entityTypeManager()
     ->getStorage('file')
@@ -99,7 +99,7 @@ function osu_profile_update_9002(&$sandbox): TranslatableMarkup {
 /**
  * Add Metatag defaults and update display of name to an H1.
  */
-function osu_profile_update_9003(&$sandbox) {
+function osu_profile_update_9003(&$sandbox): TranslatableMarkup {
   $osu_profile_path = \Drupal::service('module_handler')
     ->getModule('osu_profile')
     ->getPath();
@@ -165,8 +165,19 @@ function osu_profile_update_9005(&$sandbox): TranslatableMarkup {
 /**
  * Update the profile image form widget to use Focal Point.
  */
-function osu_profiles_update_9006(&$sandbox): TranslatableMarkup {
-  $osu_profile_form_config = \Drupal::configFactory()
-    ->getEditable('core.entity_form_display.node.osu_profile.default');
+function osu_profile_update_9006(&$sandbox): TranslatableMarkup {
+  $osu_profile_form_config = \Drupal::configFactory()->getEditable('core.entity_form_display.node.osu_profile.default');
+  $form_content = $osu_profile_form_config->get('content');
+  $profile_image_field_settings = [
+    "progress_indicator" => "throbber",
+    "preview_image_style" => "x_large",
+    "preview_link" => TRUE,
+    "offsets" => '50,50',
+  ];
+  $form_content['field_profile_image']['type'] = 'image_focal_point';
+  $form_content['field_profile_image']['settings'] = $profile_image_field_settings;
+  $osu_profile_form_config->set('content', $form_content);
+  $osu_profile_form_config->save();
+
   return t('');
 }
