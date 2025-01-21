@@ -15,12 +15,12 @@ dependencies:
     - field.field.node.osu_profile.field_profile_office_phone
     - field.field.node.osu_profile.field_profile_primary_title
     - field.field.node.osu_profile.field_profile_pronouns
-    - image.style.thumbnail
+    - image.style.x_large
     - node.type.osu_profile
   module:
     - address
     - field_group
-    - image
+    - focal_point
     - media_library
     - path
     - telephone
@@ -148,12 +148,14 @@ content:
       placeholder: ''
     third_party_settings: { }
   field_profile_image:
-    type: image_image
+    type: image_focal_point
     weight: 14
     region: content
     settings:
       progress_indicator: throbber
-      preview_image_style: thumbnail
+      preview_image_style: x_large
+      preview_link: true
+      offsets: '50,50'
     third_party_settings: { }
   field_profile_last_name:
     type: string_textfield
