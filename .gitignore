@@ -1,0 +1,7 @@
+.idea
+.vim
+.nvim.lua
+.vscode
+/vendor/
+composer.lock
+.DS_Store
