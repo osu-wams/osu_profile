@@ -5,6 +5,7 @@ use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\image\Entity\ImageStyle;
 use Drupal\pathauto\Entity\PathautoPattern;
 
 /**
@@ -166,7 +167,8 @@ function osu_profile_update_9005(&$sandbox): TranslatableMarkup {
  * Update the profile image form widget to use Focal Point.
  */
 function osu_profile_update_9006(&$sandbox): TranslatableMarkup {
-  $osu_profile_form_config = \Drupal::configFactory()->getEditable('core.entity_form_display.node.osu_profile.default');
+  $osu_profile_form_config = \Drupal::configFactory()
+    ->getEditable('core.entity_form_display.node.osu_profile.default');
   $form_content = $osu_profile_form_config->get('content');
   $profile_image_field_settings = [
     "progress_indicator" => "throbber",
@@ -180,4 +182,41 @@ function osu_profile_update_9006(&$sandbox): TranslatableMarkup {
   $osu_profile_form_config->save();
 
   return t('');
+}
+
+/**
+ * Update Media style to use Focal Point and convert to WebP.
+ */
+function osu_profile_update_9007(&$sandbox): TranslatableMarkup {
+  $profile_image_style_id = "profile_image";
+  $profile_image_style = ImageStyle::load($profile_image_style_id);
+  if ($profile_image_style) {
+    $effects = $profile_image_style->get('effects');
+    if (array_key_exists('735fa0e3-4235-412a-afb1-80a683bb8edf', $effects)) {
+      $old_effect = $profile_image_style->getEffect('735fa0e3-4235-412a-afb1-80a683bb8edf');
+      $profile_image_style->deleteImageEffect($old_effect);
+      $convert_web_p = [
+        "id" => "image_convert",
+        "weight" => -9,
+        "data" => [
+          "extension" => "webp",
+        ],
+      ];
+      $focal_point_effect = [
+        "id" => "focal_point_scale_and_crop",
+        "weight" => -10,
+        "data" => [
+          "width" => 600,
+          "height" => 600,
+          "crop_type" => "focal_point",
+        ],
+      ];
+      $profile_image_style->addImageEffect($convert_web_p);
+      $profile_image_style->addImageEffect($focal_point_effect);
+      $profile_image_style->save();;
+      return t('Updated profile image style to use Focal Point and convert to WebP.');
+    }
+    return t('Profile image style does not have the correct effect. Need manual intervention.');
+  }
+  return t('Profile image style does not exist.');
 }
