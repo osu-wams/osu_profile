@@ -1,9 +1,9 @@
-uuid: ca40dff9-7075-4fdb-a6a4-f24f2f5ada27
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.node.osu_profile.field_osu_organizations
+    - field.field.node.osu_profile.field_osu_sort_weight
     - field.field.node.osu_profile.field_profile_address
     - field.field.node.osu_profile.field_profile_biography
     - field.field.node.osu_profile.field_profile_credentials
@@ -30,10 +30,10 @@ third_party_settings:
     enabled: true
     allow_custom: false
     sections:
-      - layout_id: 'bootstrap_layout_builder:blb_col_3'
+      - layout_id: "bootstrap_layout_builder:blb_col_3"
         layout_settings:
-          label: ''
-          container_wrapper_classes: ''
+          label: ""
+          container_wrapper_classes: ""
           container_wrapper_attributes: null
           container_wrapper:
             bootstrap_styles:
@@ -122,15 +122,15 @@ third_party_settings:
                 class: null
               min_height:
                 class: 0
-          container_wrapper_bg_color_class: ''
+          container_wrapper_bg_color_class: ""
           container_wrapper_bg_media: null
           container: container
-          section_classes: ''
+          section_classes: ""
           section_attributes: null
           regions_classes:
-            blb_region_col_1: ''
-            blb_region_col_2: ''
-            blb_region_col_3: ''
+            blb_region_col_1: ""
+            blb_region_col_2: ""
+            blb_region_col_3: ""
           regions_attributes:
             blb_region_col_1: null
             blb_region_col_2: null
@@ -152,16 +152,16 @@ third_party_settings:
               - col-lg-6
               - col-md-12
               - col-12
-          remove_gutters: '0'
-          context_mapping: { }
+          remove_gutters: "0"
+          context_mapping: {}
         components:
           3a4fe79a-e52e-4fa2-99ee-3f5fec409e60:
             uuid: 3a4fe79a-e52e-4fa2-99ee-3f5fec409e60
             region: blb_region_col_2
             configuration:
-              id: 'field_block:node:osu_profile:title'
-              label: 'In-line Block'
-              label_display: '0'
+              id: "field_block:node:osu_profile:title"
+              label: "In-line Block"
+              label_display: "0"
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
@@ -173,10 +173,10 @@ third_party_settings:
                   link_to_entity: 0
                   wrap_tag: h1
                   wrap_class: text-break
-                  wrap_attributes: ''
-                  override_link_label: ''
-                  token: ''
-                third_party_settings: { }
+                  wrap_attributes: ""
+                  override_link_label: ""
+                  token: ""
+                third_party_settings: {}
             weight: 0
             additional:
               bootstrap_styles:
@@ -270,27 +270,27 @@ third_party_settings:
                     class: 0
               component_attributes:
                 block_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
+                  id: ""
+                  class: ""
+                  style: ""
+                  data: ""
                 block_title_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
+                  id: ""
+                  class: ""
+                  style: ""
+                  data: ""
                 block_content_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
+                  id: ""
+                  class: ""
+                  style: ""
+                  data: ""
           4de2059f-11aa-4ca7-ac81-71305247eb9a:
             uuid: 4de2059f-11aa-4ca7-ac81-71305247eb9a
             region: blb_region_col_3
             configuration:
-              id: 'field_block:node:osu_profile:field_profile_email'
-              label: 'In-line Block'
-              label_display: '0'
+              id: "field_block:node:osu_profile:field_profile_email"
+              label: "In-line Block"
+              label_display: "0"
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
@@ -298,8 +298,8 @@ third_party_settings:
               formatter:
                 type: email_mailto
                 label: hidden
-                settings: { }
-                third_party_settings: { }
+                settings: {}
+                third_party_settings: {}
             weight: 0
             additional:
               bootstrap_styles:
@@ -395,9 +395,9 @@ third_party_settings:
             uuid: 72d57513-c22d-4c23-8dd7-2ffea85e5899
             region: blb_region_col_3
             configuration:
-              id: 'field_block:node:osu_profile:field_profile_address'
-              label: 'In-line Block'
-              label_display: '0'
+              id: "field_block:node:osu_profile:field_profile_address"
+              label: "In-line Block"
+              label_display: "0"
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
@@ -405,8 +405,8 @@ third_party_settings:
               formatter:
                 type: address_default
                 label: hidden
-                settings: { }
-                third_party_settings: { }
+                settings: {}
+                third_party_settings: {}
             weight: 2
             additional:
               bootstrap_styles:
@@ -500,9 +500,9 @@ third_party_settings:
             uuid: 625a2ffc-1ec0-40a8-a857-10310c0a9033
             region: blb_region_col_3
             configuration:
-              id: 'field_block:node:osu_profile:field_profile_office_phone'
-              label: 'In-line Block'
-              label_display: '0'
+              id: "field_block:node:osu_profile:field_profile_office_phone"
+              label: "In-line Block"
+              label_display: "0"
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
@@ -511,8 +511,8 @@ third_party_settings:
                 type: telephone_link
                 label: hidden
                 settings:
-                  title: ''
-                third_party_settings: { }
+                  title: ""
+                third_party_settings: {}
             weight: 1
             additional:
               bootstrap_styles:
@@ -608,9 +608,9 @@ third_party_settings:
             uuid: e2db52d1-d4e9-4945-905d-07f7a7b96394
             region: blb_region_col_2
             configuration:
-              id: 'field_block:node:osu_profile:field_profile_pronouns'
-              label: 'In-line Block'
-              label_display: '0'
+              id: "field_block:node:osu_profile:field_profile_pronouns"
+              label: "In-line Block"
+              label_display: "0"
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
@@ -620,7 +620,7 @@ third_party_settings:
                 label: hidden
                 settings:
                   link_to_entity: false
-                third_party_settings: { }
+                third_party_settings: {}
             weight: 2
             additional:
               bootstrap_styles:
@@ -716,9 +716,9 @@ third_party_settings:
             uuid: 96ece9b3-d94b-48c4-a13f-099dde29fd63
             region: blb_region_col_1
             configuration:
-              id: 'field_block:node:osu_profile:field_profile_image'
+              id: "field_block:node:osu_profile:field_profile_image"
               label: Image
-              label_display: '0'
+              label_display: "0"
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
@@ -727,11 +727,11 @@ third_party_settings:
                 type: image
                 label: hidden
                 settings:
-                  image_link: ''
+                  image_link: ""
                   image_style: profile_image
                   image_loading:
                     attribute: lazy
-                third_party_settings: { }
+                third_party_settings: {}
             weight: 0
             additional:
               bootstrap_styles:
@@ -827,9 +827,9 @@ third_party_settings:
             uuid: c573a706-f971-4ad7-8db3-6ddb59a6f6d1
             region: blb_region_col_2
             configuration:
-              id: 'field_block:node:osu_profile:field_osu_organizations'
+              id: "field_block:node:osu_profile:field_osu_organizations"
               label: Organizations
-              label_display: '0'
+              label_display: "0"
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
@@ -839,7 +839,7 @@ third_party_settings:
                 label: hidden
                 settings:
                   link: false
-                third_party_settings: { }
+                third_party_settings: {}
             weight: 4
             additional:
               bootstrap_styles:
@@ -933,27 +933,27 @@ third_party_settings:
                     class: 0
               component_attributes:
                 block_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
+                  id: ""
+                  class: ""
+                  style: ""
+                  data: ""
                 block_title_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
+                  id: ""
+                  class: ""
+                  style: ""
+                  data: ""
                 block_content_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
+                  id: ""
+                  class: ""
+                  style: ""
+                  data: ""
           6cdde5f7-8c6f-4ed8-884b-6cff9dd10702:
             uuid: 6cdde5f7-8c6f-4ed8-884b-6cff9dd10702
             region: blb_region_col_2
             configuration:
-              id: 'field_block:node:osu_profile:field_profile_primary_title'
-              label: 'Profile Primary Title'
-              label_display: '0'
+              id: "field_block:node:osu_profile:field_profile_primary_title"
+              label: "Profile Primary Title"
+              label_display: "0"
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
@@ -963,7 +963,7 @@ third_party_settings:
                 label: hidden
                 settings:
                   link_to_entity: false
-                third_party_settings: { }
+                third_party_settings: {}
             weight: 3
             additional:
               bootstrap_styles:
@@ -1055,11 +1055,11 @@ third_party_settings:
                     class: null
                   min_height:
                     class: 0
-        third_party_settings: { }
-      - layout_id: 'bootstrap_layout_builder:blb_col_1'
+        third_party_settings: {}
+      - layout_id: "bootstrap_layout_builder:blb_col_1"
         layout_settings:
-          label: ''
-          container_wrapper_classes: ''
+          label: ""
+          container_wrapper_classes: ""
           container_wrapper_attributes: null
           container_wrapper:
             bootstrap_styles:
@@ -1148,13 +1148,13 @@ third_party_settings:
                 class: null
               min_height:
                 class: 0
-          container_wrapper_bg_color_class: ''
+          container_wrapper_bg_color_class: ""
           container_wrapper_bg_media: null
           container: container
-          section_classes: ''
+          section_classes: ""
           section_attributes: null
           regions_classes:
-            blb_region_col_1: ''
+            blb_region_col_1: ""
           regions_attributes:
             blb_region_col_1: null
           breakpoints:
@@ -1166,16 +1166,16 @@ third_party_settings:
               - col-lg-12
               - col-md-12
               - col-12
-          remove_gutters: '0'
-          context_mapping: { }
+          remove_gutters: "0"
+          context_mapping: {}
         components:
           04aeb3d9-0515-4c8d-969c-d3976089da9d:
             uuid: 04aeb3d9-0515-4c8d-969c-d3976089da9d
             region: blb_region_col_1
             configuration:
-              id: 'field_block:node:osu_profile:field_profile_biography'
-              label: 'In-line Block'
-              label_display: '0'
+              id: "field_block:node:osu_profile:field_profile_biography"
+              label: "In-line Block"
+              label_display: "0"
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
@@ -1183,8 +1183,8 @@ third_party_settings:
               formatter:
                 type: text_default
                 label: hidden
-                settings: { }
-                third_party_settings: { }
+                settings: {}
+                third_party_settings: {}
             weight: 0
             additional:
               bootstrap_styles:
@@ -1276,28 +1276,28 @@ third_party_settings:
                     class: null
                   min_height:
                     class: 0
-        third_party_settings: { }
+        third_party_settings: {}
   layout_builder_restrictions:
-    allowed_block_categories: { }
+    allowed_block_categories: {}
     entity_view_mode_restriction:
       allowed_layouts:
-        - 'bootstrap_layout_builder:blb_col_1'
-        - 'bootstrap_layout_builder:blb_col_2'
-        - 'bootstrap_layout_builder:blb_col_3'
-        - 'bootstrap_layout_builder:blb_col_4'
-        - 'bootstrap_layout_builder:blb_col_5'
-        - 'bootstrap_layout_builder:blb_col_6'
-      restricted_categories: { }
-      blacklisted_blocks: { }
-      whitelisted_blocks: { }
+        - "bootstrap_layout_builder:blb_col_1"
+        - "bootstrap_layout_builder:blb_col_2"
+        - "bootstrap_layout_builder:blb_col_3"
+        - "bootstrap_layout_builder:blb_col_4"
+        - "bootstrap_layout_builder:blb_col_5"
+        - "bootstrap_layout_builder:blb_col_6"
+      restricted_categories: {}
+      blacklisted_blocks: {}
+      whitelisted_blocks: {}
     entity_view_mode_restriction_by_region:
       allowed_layouts:
-        - 'bootstrap_layout_builder:blb_col_1'
-        - 'bootstrap_layout_builder:blb_col_2'
-        - 'bootstrap_layout_builder:blb_col_3'
-        - 'bootstrap_layout_builder:blb_col_4'
-        - 'bootstrap_layout_builder:blb_col_5'
-        - 'bootstrap_layout_builder:blb_col_6'
+        - "bootstrap_layout_builder:blb_col_1"
+        - "bootstrap_layout_builder:blb_col_2"
+        - "bootstrap_layout_builder:blb_col_3"
+        - "bootstrap_layout_builder:blb_col_4"
+        - "bootstrap_layout_builder:blb_col_5"
+        - "bootstrap_layout_builder:blb_col_6"
 id: node.osu_profile.default
 targetEntityType: node
 bundle: osu_profile
@@ -1308,36 +1308,45 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: { }
+    third_party_settings: {}
     weight: 112
+    region: blb_region_col_1
+  field_osu_sort_weight:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ""
+      prefix_suffix: true
+    third_party_settings: {}
+    weight: 114
     region: blb_region_col_1
   field_preferred_name:
     type: string
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: { }
+    third_party_settings: {}
     weight: 106
     region: content
   field_profile_address:
     type: address_default
     label: above
-    settings: { }
-    third_party_settings: { }
+    settings: {}
+    third_party_settings: {}
     weight: 107
     region: content
   field_profile_biography:
     type: text_default
     label: above
-    settings: { }
-    third_party_settings: { }
+    settings: {}
+    third_party_settings: {}
     weight: 109
     region: content
   field_profile_email:
     type: basic_string
     label: above
-    settings: { }
-    third_party_settings: { }
+    settings: {}
+    third_party_settings: {}
     weight: 105
     region: content
   field_profile_first_name:
@@ -1345,18 +1354,18 @@ content:
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: { }
+    third_party_settings: {}
     weight: 102
     region: content
   field_profile_image:
     type: image
     label: above
     settings:
-      image_link: ''
-      image_style: ''
+      image_link: ""
+      image_style: ""
       image_loading:
         attribute: lazy
-    third_party_settings: { }
+    third_party_settings: {}
     weight: 111
     region: blb_region_col_1
   field_profile_last_name:
@@ -1364,7 +1373,7 @@ content:
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: { }
+    third_party_settings: {}
     weight: 103
     region: content
   field_profile_middle_name:
@@ -1372,14 +1381,14 @@ content:
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: { }
+    third_party_settings: {}
     weight: 104
     region: content
   field_profile_office_phone:
     type: basic_string
     label: above
-    settings: { }
-    third_party_settings: { }
+    settings: {}
+    third_party_settings: {}
     weight: 108
     region: content
   field_profile_primary_title:
@@ -1387,7 +1396,7 @@ content:
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: { }
+    third_party_settings: {}
     weight: 113
     region: blb_region_col_1
   field_profile_pronouns:
@@ -1395,12 +1404,12 @@ content:
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: { }
+    third_party_settings: {}
     weight: 110
     region: content
   links:
-    settings: { }
-    third_party_settings: { }
+    settings: {}
+    third_party_settings: {}
     weight: 100
     region: content
 hidden:

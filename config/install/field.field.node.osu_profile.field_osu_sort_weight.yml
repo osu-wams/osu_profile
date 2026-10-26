@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_osu_sort_weight
+    - node.type.osu_profile
+  module:
+    - weight
+id: node.osu_profile.field_osu_sort_weight
+field_name: field_osu_sort_weight
+entity_type: node
+bundle: osu_profile
+label: "Sort Weight"
+description: "Use the weight option to add extra sorting for profiles. Negative numbers will be sorted before positive ones."
+required: false
+translatable: false
+default_value:
+  - value: "0"
+default_value_callback: ""
+settings:
+  range: "50"
+field_type: weight
