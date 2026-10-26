@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @file
+ * The Install file.
+ */
+
+declare(strict_types=1);
+
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -13,14 +20,14 @@ use Drupal\pathauto\Entity\PathautoPattern;
  */
 function osu_profile_install(): void {
   // Load default image by name to get uuid.
-  $default_image_array = \Drupal::entityTypeManager()
+  $default_image_array = Drupal::entityTypeManager()
     ->getStorage('file')
     ->loadByProperties(['filename' => 'profile_preview.png']);
   $default_image = reset($default_image_array);
   $default_uuid = $default_image->get('uuid')->value;
 
   // Load image field to set default image uuid.
-  $image_field = \Drupal::configFactory()
+  $image_field = Drupal::configFactory()
     ->getEditable('field.field.node.osu_profile.field_profile_image');
   $settings = $image_field->get('settings');
   $settings['default_image']['uuid'] = $default_uuid;
@@ -32,17 +39,18 @@ function osu_profile_install(): void {
  * Add text break to fix issues with long names and emails.
  */
 function osu_profile_update_9001(&$sandbox): void {
-  // Add text break to title and email on the entity view display
-  $profile_layout = \Drupal::configFactory()
+  // Add text break to title and email on the entity view display.
+  $profile_layout = Drupal::configFactory()
     ->getEditable('core.entity_view_display.node.osu_profile.default');
   $third_party_settings = $profile_layout->get('third_party_settings');
   $components = $third_party_settings['layout_builder']['sections'][0]['components'];
+
   foreach ($profile_layout->get('third_party_settings')['layout_builder']['sections'][0]['components'] as $key => &$component) {
-    if ($component['configuration']['id'] == 'field_block:node:osu_profile:title') {
+    if ($component['configuration']['id'] === 'field_block:node:osu_profile:title') {
       $components[$key]['additional']['component_attributes']['block_content_attributes']['class'] = 'h2 fw-bolder osu-text-osuorange text-break';
     }
     else {
-      if ($component['configuration']['id'] == 'field_block:node:osu_profile:field_profile_email') {
+      if ($component['configuration']['id'] === 'field_block:node:osu_profile:field_profile_email') {
         $components[$key]['additional']['component_attributes']['block_content_attributes']['class'] = 'text-break';
       }
     }
@@ -51,8 +59,8 @@ function osu_profile_update_9001(&$sandbox): void {
   $profile_layout->set('third_party_settings', $third_party_settings);
   $profile_layout->save();
 
-  // Update view display on profile view
-  $profile_view = \Drupal::configFactory()->getEditable('views.view.profile');
+  // Update view display on profile view.
+  $profile_view = Drupal::configFactory()->getEditable('views.view.profile');
   $view_display = $profile_view->get('display');
   $view_display['default']['display_options']['fields']['nothing']['alter']['text'] = "<div class=\"p-3 osu-bg-page-alt-1 rounded-bottom\">\r\n  <h2 class=\"fw-bolder text-break\">\r\n    {{ title }}\r\n  </h2>\r\n  <p class=\"pb-4\">{{ field_profile_pronouns }}</p>\r\n  <p class=\"text-break\">{{ field_profile_email }}</p>\r\n  <p>{{ field_profile_office_phone }}</p>\r\n  <p>{{ field_profile_address }}</p>\r\n</div>";
   $profile_view->set('display', $view_display);
@@ -63,13 +71,13 @@ function osu_profile_update_9001(&$sandbox): void {
  * Add new field to profile.
  */
 function osu_profile_update_9002(&$sandbox): TranslatableMarkup {
-  $install_path = \Drupal::service('module_handler')
+  $install_path = Drupal::service('module_handler')
     ->getModule('osu_profile')
     ->getPath();
   $config_path = realpath($install_path . '/config/install');
   $source = new FileStorage($config_path);
   /** @var \Drupal\Core\Config\CachedStorage $config_storage */
-  $config_storage = \Drupal::service('config.storage');
+  $config_storage = Drupal::service('config.storage');
   // Add new pathauto pattern.
   PathautoPattern::create($source->read('pathauto.pattern.osu_profile_node'))
     ->save();
@@ -82,18 +90,19 @@ function osu_profile_update_9002(&$sandbox): TranslatableMarkup {
   // Update for form display by pushing to the end.
   $form_config = $config_storage->read('core.entity_form_display.node.osu_profile.default');
   $form_config['third_party_settings']['field_group']['group_personal_information']['children'][] = 'field_profile_primary_title';
-  // Add the field settings
+  // Add the field settings.
   $form_config['content']['field_profile_primary_title'] = [
-    "type" => "string_textfield",
-    "weight" => 13,
-    "region" => "content",
-    "settings" => [
-      "size" => 60,
-      "placeholder" => "",
+    'type' => 'string_textfield',
+    'weight' => 13,
+    'region' => 'content',
+    'settings' => [
+      'size' => 60,
+      'placeholder' => '',
     ],
-    "third_party_settings" => [],
+    'third_party_settings' => [],
   ];
   $config_storage->write('views.view.profile', $source->read('views.view.profile'));
+
   return t('Field, Pathauto, View and Form configs updates, manual updates to node view are required.');
 }
 
@@ -101,16 +110,17 @@ function osu_profile_update_9002(&$sandbox): TranslatableMarkup {
  * Add Metatag defaults and update display of name to an H1.
  */
 function osu_profile_update_9003(&$sandbox): TranslatableMarkup {
-  $osu_profile_path = \Drupal::service('module_handler')
+  $osu_profile_path = Drupal::service('module_handler')
     ->getModule('osu_profile')
     ->getPath();
   $config_path = realpath($osu_profile_path . '/config/install');
   /** @var \Drupal\Core\Config\FileStorage $file_source */
   $file_source = new FileStorage($config_path);
   /** @var \Drupal\Core\Config\CachedStorage $config_storage */
-  $config_storage = \Drupal::service('config.storage');
+  $config_storage = Drupal::service('config.storage');
   $profile_metatag = $file_source->read('metatag.metatag_defaults.node__osu_profile');
   $config_storage->write('metatag.metatag_defaults.node__osu_profile', $profile_metatag);
+
   return t('Add default metatag for profile content type.');
 }
 
@@ -118,14 +128,14 @@ function osu_profile_update_9003(&$sandbox): TranslatableMarkup {
  * Add the teaser display to the profile content type.
  */
 function osu_profile_update_9004(&$sandbox): void {
-  $osu_profile_path = \Drupal::service('module_handler')
+  $osu_profile_path = Drupal::service('module_handler')
     ->getModule('osu_profile')
     ->getPath();
   $config_path = realpath($osu_profile_path . '/config/install');
   /** @var \Drupal\Core\Config\FileStorage $file_source */
   $file_source = new FileStorage($config_path);
   /** @var \Drupal\Core\Config\CachedStorage $config_storage */
-  $config_storage = \Drupal::service('config.storage');
+  $config_storage = Drupal::service('config.storage');
   $config_storage->write('core.entity_view_display.node.osu_profile.teaser', $file_source->read('core.entity_view_display.node.osu_profile.teaser'));
 }
 
@@ -138,27 +148,30 @@ function osu_profile_update_9005(&$sandbox): TranslatableMarkup {
   /** @var array $field_overrides */
   $field_overrides = $profile_address_field->getSetting('field_overrides');
   $address_field_updates = [
-    "addressLine1" => [
-      "override" => "optional",
+    'addressLine1' => [
+      'override' => 'optional',
     ],
-    "postalCode" => [
-      "override" => "optional",
+    'postalCode' => [
+      'override' => 'optional',
     ],
-    "locality" => [
-      "override" => "optional",
+    'locality' => [
+      'override' => 'optional',
     ],
-    "administrativeArea" => [
-      "override" => "optional",
+    'administrativeArea' => [
+      'override' => 'optional',
     ],
   ];
   $field_overrides = array_merge($address_field_updates, $field_overrides);
   $profile_address_field->setSetting('field_overrides', $field_overrides);
+
   try {
     $profile_address_field->save();
+
     return t('Profile Address field is now optional.');
   }
   catch (EntityStorageException $e) {
-    \Drupal::logger('osu_profile')->error($e->getMessage());
+    Drupal::logger('osu_profile')->error($e->getMessage());
+
     return t('Something went wrong');
   }
 }
@@ -167,56 +180,61 @@ function osu_profile_update_9005(&$sandbox): TranslatableMarkup {
  * Update the profile image form widget to use Focal Point.
  */
 function osu_profile_update_9006(&$sandbox): TranslatableMarkup {
-  $osu_profile_form_config = \Drupal::configFactory()
+  $osu_profile_form_config = Drupal::configFactory()
     ->getEditable('core.entity_form_display.node.osu_profile.default');
   $form_content = $osu_profile_form_config->get('content');
   $profile_image_field_settings = [
-    "progress_indicator" => "throbber",
-    "preview_image_style" => "x_large",
-    "preview_link" => TRUE,
-    "offsets" => '50,50',
+    'progress_indicator' => 'throbber',
+    'preview_image_style' => 'x_large',
+    'preview_link' => TRUE,
+    'offsets' => '50,50',
   ];
   $form_content['field_profile_image']['type'] = 'image_focal_point';
   $form_content['field_profile_image']['settings'] = $profile_image_field_settings;
   $osu_profile_form_config->set('content', $form_content);
   $osu_profile_form_config->save();
 
-  return t('');
+  return t('Updated OSU Profiles to use Focal Point.');
 }
 
 /**
  * Update Media style to use Focal Point and convert to WebP.
  */
 function osu_profile_update_9007(&$sandbox): TranslatableMarkup {
-  $profile_image_style_id = "profile_image";
+  $profile_image_style_id = 'profile_image';
   $profile_image_style = ImageStyle::load($profile_image_style_id);
+
   if ($profile_image_style) {
     $effects = $profile_image_style->get('effects');
+
     if (array_key_exists('735fa0e3-4235-412a-afb1-80a683bb8edf', $effects)) {
       $old_effect = $profile_image_style->getEffect('735fa0e3-4235-412a-afb1-80a683bb8edf');
       $profile_image_style->deleteImageEffect($old_effect);
       $convert_web_p = [
-        "id" => "image_convert",
-        "weight" => -9,
-        "data" => [
-          "extension" => "webp",
+        'id' => 'image_convert',
+        'weight' => -9,
+        'data' => [
+          'extension' => 'webp',
         ],
       ];
       $focal_point_effect = [
-        "id" => "focal_point_scale_and_crop",
-        "weight" => -10,
-        "data" => [
-          "width" => 600,
-          "height" => 600,
-          "crop_type" => "focal_point",
+        'id' => 'focal_point_scale_and_crop',
+        'weight' => -10,
+        'data' => [
+          'width' => 600,
+          'height' => 600,
+          'crop_type' => 'focal_point',
         ],
       ];
       $profile_image_style->addImageEffect($convert_web_p);
       $profile_image_style->addImageEffect($focal_point_effect);
-      $profile_image_style->save();;
+      $profile_image_style->save();
+
       return t('Updated profile image style to use Focal Point and convert to WebP.');
     }
+
     return t('Profile image style does not have the correct effect. Need manual intervention.');
   }
+
   return t('Profile image style does not exist.');
 }

@@ -1,27 +1,37 @@
 {
-  "name": "osu-wams/osu_profile",
-  "description": "Drupal Module for OSU profile content type",
-  "minimum-stability": "stable",
-  "type": "drupal-custom-module",
-  "license": "GPL-2.0-or-later",
-  "authors": [
-    {
-      "name": "Alex Ruef",
-      "email": "alex.ruef@oregonstate.edu"
+    "name": "osu-wams/osu_profile",
+    "description": "Drupal Module for OSU profile content type",
+    "minimum-stability": "stable",
+    "type": "drupal-custom-module",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Alex Ruef",
+            "email": "alex.ruef@oregonstate.edu"
+        },
+        {
+            "name": "Matthew Brabham",
+            "email": "matthew.brabham@oregonstate.edu"
+        }
+    ],
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.2",
+        "squizlabs/php_codesniffer": "^4.0",
+        "drupal/coder": "^9.0",
+        "drupol/phpcsfixer-configs-drupal": "^2.2",
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "vincentlanglet/twig-cs-fixer": "^4.1"
     },
-    {
-      "name": "Matthew Brabham",
-      "email": "matthew.brabham@oregonstate.edu"
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "scripts": {
+        "cs-checkstyle": "phpcs -q --report=checkstyle",
+        "phpcs": "phpcs",
+        "phpcbf": "phpcbf",
+        "twigcs": "twig-cs-fixer lint -c .twig-cs-fixer.php",
+        "twigcs-fix": "twig-cs-fixer lint -c .twig-cs-fixer.php --fix"
     }
-  ],
-  "require-dev": {
-    "dealerdirect/phpcodesniffer-composer-installer": "^1.2",
-    "squizlabs/php_codesniffer": "^4.0",
-    "drupal/coder": "^9.0"
-  },
-  "config": {
-    "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
-  }
 }
