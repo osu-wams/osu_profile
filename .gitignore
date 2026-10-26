@@ -1,7 +1,12 @@
-.idea
-.vim
-.nvim.lua
-.vscode
-/vendor/
 composer.lock
+/vendor/
+# IDE's
+.idea
+.nvim.lua
+.vim
+.vscode
+# Apples
 .DS_Store
+
+/*.log
+/*.cache
