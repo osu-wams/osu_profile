@@ -11,7 +11,7 @@ field_name: field_osu_sort_weight
 entity_type: node
 bundle: osu_profile
 label: "Sort Weight"
-description: "Use the weight option to add extra sorting for profiles. Negative numbers will be sorted before positive ones."
+description: "Weight lets you prioritize profiles within the directory and create an order that reflects your department’s organizational structure. Profiles with lower weights appear before profiles with higher weights.<br>For example, you could give the department head a weight of -99, followed by other leadership positions with progressively higher weights, and leave other profiles at the default weight.<br>If profiles have the same weight or you don't assign any weights, they are sorted by last name, then first name. "
 required: false
 translatable: false
 default_value:
