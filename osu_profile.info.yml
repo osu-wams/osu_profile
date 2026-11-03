@@ -10,4 +10,5 @@ dependencies:
  - field_group:field_group
  - focal_point:focal_point
  - osu_default_content:osu_default_content
+ - schema_metatag:schema_person
  - weight:weight
